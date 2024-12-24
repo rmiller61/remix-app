@@ -10,6 +10,9 @@ declare module "@remix-run/node" {
 }
 
 export default defineConfig({
+  build: {
+    target: "esnext",
+  },
   plugins: [
     remix({
       future: {
@@ -20,6 +23,9 @@ export default defineConfig({
         v3_lazyRouteDiscovery: true,
       },
       presets: [vercelPreset()],
+      buildEnd: async () => {
+        await import('./env')
+      }
     }),
     tsconfigPaths(),
   ],

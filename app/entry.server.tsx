@@ -11,8 +11,9 @@ import { createReadableStreamFromReadable } from "@remix-run/node";
 import { RemixServer } from "@remix-run/react";
 import { isbot } from "isbot";
 import { renderToPipeableStream } from "react-dom/server";
+import { env } from "../env";
 
-if (process.env.MOCK === 'true') {
+if (env.MOCK) {
   const {server} = await import('../tests/mocks');
   server.listen()
 }
